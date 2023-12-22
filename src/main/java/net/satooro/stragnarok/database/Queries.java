@@ -121,6 +121,25 @@ public class Queries {
         return player_uuid;
     }
 
+    public static String getNickAndStatus(String userid){
+        String username = null;
+        String status = null;
+        String sql = "SELECT player_nick, status FROM players_linked WHERE userid = ?";
+        try{
+            PreparedStatement ps = database.hikari.getConnection().prepareStatement(sql);
+            ps.setString(1, userid);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                username = rs.getString("player_nick");
+                status = rs.getString("status");
+                return username + "|" + status;
+            }
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
     public static String getNameFromCode(String code){
         String name = null;
         String sql = "SELECT player_nick FROM players_linked WHERE code = ?";

@@ -20,6 +20,17 @@ public class RegisterCommands extends ListenerAdapter {
                 .addOptions(option1));
         commandData.add(Commands.slash("playerlist", "Mostra os jogadores online"));
 
+        commandData.add(Commands.slash("darvip", "Comando para entrega de vips")
+                .addOptions(new OptionData(OptionType.USER, "usuario", "Usuário que irá receber", true))
+                .addOptions(new OptionData(OptionType.STRING, "vip", "Tipo de vip", true)
+                        .addChoice("Loki", "loki")
+                        .addChoice("Thor", "thor")
+                        .addChoice("Odin", "odin")
+                        .addChoice("Valhalla", "valhallha")
+                        .addChoice("Ragnarok", "ragnarok"))
+                .addOptions(new OptionData(OptionType.INTEGER, "dias", "Dias de vip", true)));
+
+
         event.getGuild().updateCommands().addCommands(commandData).queue();
     }
 }

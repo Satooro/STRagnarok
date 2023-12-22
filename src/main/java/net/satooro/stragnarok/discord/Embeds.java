@@ -50,6 +50,21 @@ public class Embeds {
         return embed;
     }
 
+    public static EmbedBuilder entregaVipEmbed(User staff, String player, String tipovip, User membro, String avataricon, String tempo){
+        EmbedBuilder embed = new EmbedBuilder();
+
+        embed.setTitle("**Entrega de VIP** 🫰");
+        embed.setThumbnail(avataricon);
+
+        embed.addField("Entregue por:", "```" + staff + "```", true);
+        embed.addField("Entregue para:", "```" + membro.getAsMention() + "```", true);
+        embed.addField("Nick:", "```" + player + "```", false);
+        embed.addField("VIP:", "```" + tipovip + "```", true);
+        embed.addField("Duração:", "```" + tempo + "```", true);
+
+        return embed;
+    }
+
     public static EmbedBuilder serverRunAndOff(Boolean status, String guildicon){
         EmbedBuilder embed = new EmbedBuilder();
 

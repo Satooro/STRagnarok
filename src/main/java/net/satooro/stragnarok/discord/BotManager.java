@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.satooro.stragnarok.discord.commands.DCDarVip;
 import net.satooro.stragnarok.discord.commands.DCPlayerList;
 import net.satooro.stragnarok.discord.commands.DCVincular;
 import net.satooro.stragnarok.discord.events.RegisterCommands;
@@ -22,7 +23,8 @@ public class BotManager {
                 new DCVincular(),
                 new RegisterCommands(),
                 new DCPlayerList(),
-                new JoinListener());
+                new JoinListener(),
+                new DCDarVip());
 
         String tipo = Config.getString("bot.status_type");
         switch (tipo){
