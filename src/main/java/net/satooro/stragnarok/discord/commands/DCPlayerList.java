@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.satooro.stragnarok.discord.Embeds;
 import net.satooro.stragnarok.discord.GuildManager;
+import net.satooro.stragnarok.minecraft.commands.ComandoComerciante;
 import net.satooro.stragnarok.minecraft.events.JoinListener;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -33,7 +34,7 @@ public class DCPlayerList extends ListenerAdapter {
             }
             if(list.size() > 0){
                 int quantiamembros = Bukkit.getOnlinePlayers().size();
-                event.deferReply(false).setEmbeds(Embeds.onlinePlayersEmbed(getOnlinePlayersList(), quantiamembros, guildicon).build()).queue();
+                event.deferReply(false).setEmbeds(Embeds.onlinePlayersEmbed(getOnlinePlayersList(), quantiamembros, guildicon, ComandoComerciante.comerciante).build()).queue();
 //                event.reply("Jogadores: " + getOnlinePlayersList()).queue();
             } else {
                 event.reply("Não há nenhum jogador online").queue();

@@ -65,6 +65,8 @@ public class Config {
         get().addDefault("mysql.password", "");
         get().addDefault("mysql.ssl", "");
 
+        get().addDefault("minecraft.comerciante.ativado", true);
+        get().addDefault("minecraft.comerciante.feira_atual", "Iniciante");
         get().addDefault("minecraft.discord_embeds.server_status.startup_and_shutdown_broadcast", true);
         get().addDefault("minecraft.discord_embeds.server_status.startup_title", "Servidor online!");
         get().addDefault("minecraft.discord_embeds.server_status.startup_description", Arrays.asList(" ", "O servidor acabou de iniciar, podem jogar!", " "));

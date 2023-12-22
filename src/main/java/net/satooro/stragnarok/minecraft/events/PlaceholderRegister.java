@@ -1,9 +1,10 @@
 package net.satooro.stragnarok.minecraft.events;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import net.satooro.stragnarok.minecraft.commands.ComandoComerciante;
 import org.bukkit.OfflinePlayer;
 
-public class ComerciantePlaceholder extends PlaceholderExpansion {
+public class PlaceholderRegister extends PlaceholderExpansion {
 
     public String getAuthor(){
         return "Satooro";
@@ -24,6 +25,9 @@ public class ComerciantePlaceholder extends PlaceholderExpansion {
         }
         if(params.equalsIgnoreCase("placeholder2")){
             return "Placeholder 2";
+        }
+        if(params.equals("comerciante_atual")){
+            return ComandoComerciante.comerciante;
         }
         return null;
     }

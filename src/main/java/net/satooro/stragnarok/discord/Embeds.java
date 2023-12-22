@@ -37,13 +37,14 @@ public class Embeds {
         return embed;
     }
 
-    public static EmbedBuilder onlinePlayersEmbed(String playerlist, int quantiamembros, String guildicon){
+    public static EmbedBuilder onlinePlayersEmbed(String playerlist, int quantiamembros, String guildicon, String comerciante){
         EmbedBuilder embed = new EmbedBuilder();
 
         embed.setTitle("**Informações do servidor**");
         embed.setThumbnail(guildicon);
 
         embed.addField("Online agora:", "```" + quantiamembros + "```", true);
+        embed.addField("Comerciante atual:", "```" + comerciante + "```", true);
         embed.addField("Lista de players:", "```" + playerlist + "```", false);
 
         return embed;

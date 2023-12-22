@@ -30,6 +30,9 @@ discord_embed:
     - ""
 
 minecraft:
+  comerciante:
+    ativado: true
+    feira_atual: 'Iniciante'
   discord_embeds:
     entradas_e_saidas_canal: '1184812777655767111'
     join:

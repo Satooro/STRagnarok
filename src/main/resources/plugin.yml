@@ -1,7 +1,9 @@
 name: STRagnarok
 version: '${project.version}'
 main: net.satooro.stragnarok.STRagnarok
-depend: [PlaceholderAPI]
+softdepend:
+  - PlaceholderAPI
 api-version: '1.18'
 commands:
   vincular:
+  admcomerciante:
