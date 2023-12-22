@@ -1,0 +1,61 @@
+auto-update: true
+
+bot:
+  token: "TOKEN AQUI"
+  guild_id: "1182929824780660787"
+  # Status types: watching, listening, competing, playing, streaming
+  status_type: "streaming"
+  msg_status: "jogar.ragnarok-brasil.com.br"
+  # This just will show if status type = streaming
+  url_streaming: "https://twitch.tv/satooro"
+  verified_role: "ID"
+
+mysql:
+  enabled: false
+  host: ""
+  port: 3306
+  database: ""
+  username: ""
+  password: ""
+  ssl: false
+
+discord_embed:
+  title_java: '**IPs do Servidor**'
+  description_java:
+    - "Use o ip abaixo"
+    - "IP: jogar.ragnarok-brasil.com.br"
+  title_bedrock: ''
+  description_bedrock:
+    - ""
+    - ""
+
+minecraft:
+  discord_embeds:
+    entradas_e_saidas_canal: '1184812777655767111'
+    join:
+      enabled: true
+      title: 'Bem-vindo %user%'
+      description: '» **%nick%** Entrou no servidor'
+    leave:
+      enabled: true
+      title: 'Até mais %user%'
+      description: '» **%nick%** Saiu do Servidor'
+
+messages:
+  vincular: "§cUse /vincular <código>"
+  vincularsucesso: "&aVocê vinculou com sucesso sua conta com a do &9Discord"
+  vinculado: "&bSua conta é vinculada com &5%player%"
+  cooldown: "&cVocê precisa esperar para utilizar o comando novamente"
+  desvincular: "&aSua conta foi desvinculada do discord"
+  vincularconta:
+    - "Oi"
+    - "Tudo bem?"
+  commands:
+    - "/vincular conta"
+    - "/vincular serializer"
+    - "/vincular reload"
+rewards:
+  items:
+  commands:
+    - "say test"
+    - "say command"

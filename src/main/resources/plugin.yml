@@ -1,0 +1,4 @@
+name: STRagnarok
+version: '${project.version}'
+main: net.satooro.stragnarok.STRagnarok
+api-version: '1.18'
