@@ -1,8 +1,8 @@
-package net.satooro.sourcevincular.database;
+package net.satooro.stragnarok.database;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import net.satooro.sourcevincular.utils.Config;
+import net.satooro.stragnarok.utils.Config;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

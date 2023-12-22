@@ -1,6 +1,6 @@
-package net.satooro.sourcevincular.utils;
+package net.satooro.stragnarok.utils;
 
-import net.satooro.sourcevincular.database.Queries;
+import net.satooro.stragnarok.database.Queries;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -16,6 +17,10 @@ public class Utils {
 
     public static void sendMessageConsole(String message){
         Bukkit.getConsoleSender().sendMessage(message.replace("&", "§"));
+    }
+
+    public static void sendPlayerMessage(String message, Player p){
+        p.sendMessage(message.replace("&", "§"));
     }
 
     public static String randomCode(int length) {
@@ -61,6 +66,12 @@ public class Utils {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
 
         return dateTime.format(dateTimeFormatter);
+    }
+
+    public static void getNewRewards(String pName){
+        if(Config.get().getStringList("recompensas.comandos").size() > 0)
+            Config.get().getStringList("recompensas.comandos").forEach(command -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
+                    command.replace("%player%", pName).replace("&", "§")));
     }
 
     public static void getRewards(Player p){

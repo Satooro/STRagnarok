@@ -1,4 +1,4 @@
-package net.satooro.sourcevincular.utils;
+package net.satooro.stragnarok.utils;
 
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;

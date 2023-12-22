@@ -1,4 +1,4 @@
-package net.satooro.sourcevincular.database;
+package net.satooro.stragnarok.database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
