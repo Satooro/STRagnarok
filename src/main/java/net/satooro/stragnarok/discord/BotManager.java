@@ -8,10 +8,7 @@ import net.satooro.stragnarok.discord.commands.DCPlayerList;
 import net.satooro.stragnarok.discord.commands.DCVincular;
 import net.satooro.stragnarok.discord.events.RegisterCommands;
 import net.satooro.stragnarok.minecraft.events.JoinListener;
-import net.satooro.stragnarok.minecraft.events.StartAndShutdownListener;
 import net.satooro.stragnarok.utils.Config;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 
 public class BotManager {
 
@@ -25,8 +22,7 @@ public class BotManager {
                 new DCVincular(),
                 new RegisterCommands(),
                 new DCPlayerList(),
-                new JoinListener(),
-                new StartAndShutdownListener());
+                new JoinListener());
 
         String tipo = Config.getString("bot.status_type");
         switch (tipo){
