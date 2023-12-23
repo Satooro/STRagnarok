@@ -50,17 +50,25 @@ public class Embeds {
         return embed;
     }
 
-    public static EmbedBuilder entregaVipEmbed(User staff, String player, String tipovip, User membro, String avataricon, String tempo){
+    public static EmbedBuilder entregaVipEmbed(String staff, String player, String tipovip, String membro, String avataricon, String tempo){
         EmbedBuilder embed = new EmbedBuilder();
 
         embed.setTitle("**Entrega de VIP** 🫰");
         embed.setThumbnail(avataricon);
 
-        embed.addField("Entregue por:", "```" + staff + "```", true);
-        embed.addField("Entregue para:", "```" + membro.getAsMention() + "```", true);
+        embed.addField("Entregue por:",  staff, true);
+        embed.addField("Entregue para:",  membro, true);
         embed.addField("Nick:", "```" + player + "```", false);
         embed.addField("VIP:", "```" + tipovip + "```", true);
         embed.addField("Duração:", "```" + tempo + "```", true);
+
+        return embed;
+    }
+
+    public static EmbedBuilder playerNaoVinculadoEmbed(String author){
+        EmbedBuilder embed = new EmbedBuilder();
+
+        embed.setDescription(author);
 
         return embed;
     }

@@ -4,6 +4,7 @@ package net.satooro.stragnarok.database;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.UUID;
 
 import static net.satooro.stragnarok.STRagnarok.database;
 
@@ -190,6 +191,23 @@ public class Queries {
         }
     }
      */
+
+    public static Boolean isUserinDB(String userid){
+        boolean userindb = false;
+        String sql = "SELECT player_nick FROM players_linked WHERE userid = ?";
+        try{
+                PreparedStatement ps = database.hikari.getConnection().prepareStatement(sql);
+                ps.setString(1, userid);
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()){
+                    userindb = rs.getInt(1) > 0;
+                }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return userindb;
+    }
+
     public static Boolean hasDiscordID(String discordID){
         boolean hasID = false;
         String sql = "SELECT COUNT(userid) FROM players_linked WHERE userid = ?";

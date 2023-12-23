@@ -23,7 +23,6 @@ public class DCDarVip extends ListenerAdapter {
         String command = event.getName();
         String author = event.getUser().getAsMention();
         String authorid = event.getUser().getId();
-        User cmdauthor = BotManager.getJda().retrieveUserById(authorid).complete();
 
         if(command.equals("darvip")){
             OptionMapping mapping1 = event.getOption("usuario");
@@ -32,28 +31,38 @@ public class DCDarVip extends ListenerAdapter {
             OptionMapping tempo = event.getOption("dias");
 
             User userslash = event.getOption("usuario").getAsUser();
+            String userslash1 = userslash.getAsMention();
             String useravatar = userslash.getAvatarUrl();
 
             String slashid = userslash.getId();
+            Boolean userinMySQL = Queries.isUserinDB(slashid);
+            if(!userinMySQL){
+                event.reply("O usuário " + userslash1 + " não foi encontrado na database").queue();
+                return;
+            }
+
             String query = Queries.getNickAndStatus(slashid);
 
             String[] splitInfo = splitString(query);
 
-            String player_nick = splitInfo[0];
-            String status = splitInfo[1];
-
-            System.out.println(player_nick + status);
-
-            if(Objects.equals(status, "1")){
-                event.deferReply(false).setEmbeds(Embeds.entregaVipEmbed(cmdauthor, player_nick, tipovip, userslash, useravatar, tempo.getAsString()).build()).queue();
+            if(splitInfo.length >= 2){
+                String player_nick = splitInfo[0];
+                String status = splitInfo[1];
+                if (Objects.equals(status, "1")) {
+                    event.deferReply(false).setEmbeds(Embeds.entregaVipEmbed(author, player_nick, tipovip, userslash1, useravatar, tempo.getAsString()).build()).queue();
+                } else {
+                    event.deferReply(true).setEmbeds(Embeds.playerNaoVinculadoEmbed(author).build()).queue();
+                }
             }
-//            String player_nick, status = Queries.getNickAndStatus(userid);
-//            String status = Queries.get
         }
     }
 
     private static String[] splitString(String combinedString){
-        return combinedString.split("\\|");
+        if(combinedString != null){
+            return combinedString.split("\\|");
+        } else {
+            return new String[]{"", ""};
+        }
     }
 
 }

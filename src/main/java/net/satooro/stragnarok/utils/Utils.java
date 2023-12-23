@@ -69,8 +69,8 @@ public class Utils {
     }
 
     public static void getNewRewards(String pName){
-        if(Config.get().getStringList("recompensas.comandos").size() > 0)
-            Config.get().getStringList("recompensas.comandos").forEach(command -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
+        if(Config.get().getStringList("rewards.commands").size() > 0)
+            Config.get().getStringList("rewards.commands").forEach(command -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
                     command.replace("%player%", pName).replace("&", "§")));
     }
 
