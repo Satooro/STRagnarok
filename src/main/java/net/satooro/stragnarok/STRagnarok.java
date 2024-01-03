@@ -4,6 +4,7 @@ import net.satooro.stragnarok.database.Database;
 import net.satooro.stragnarok.database.Queries;
 import net.satooro.stragnarok.discord.BotManager;
 import net.satooro.stragnarok.minecraft.commands.ComandoComerciante;
+import net.satooro.stragnarok.minecraft.commands.ComandoLuz;
 import net.satooro.stragnarok.minecraft.commands.ComandoVincular;
 import net.satooro.stragnarok.minecraft.events.PlaceholderRegister;
 import net.satooro.stragnarok.minecraft.events.JoinListener;
@@ -31,6 +32,7 @@ public final class STRagnarok extends JavaPlugin {
         main = this;
 
         getServer().getPluginManager().registerEvents(new JoinListener(), this);
+        getServer().getPluginManager().registerEvents(new ComandoLuz(), this);
 
         Config.setup("config.yml");
         new Logs();
@@ -41,6 +43,7 @@ public final class STRagnarok extends JavaPlugin {
 //        Init();
         new Queries();
         new BotManager();
+        getCommand("luz").setExecutor(new ComandoLuz());
         getCommand("vincular").setExecutor(new ComandoVincular());
         getCommand("admcomerciante").setExecutor(new ComandoComerciante());
         Utils.sendMessageConsole(ComandoComerciante.comerciante);

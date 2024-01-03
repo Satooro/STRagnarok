@@ -65,6 +65,9 @@ public class Config {
         get().addDefault("mysql.password", "");
         get().addDefault("mysql.ssl", "");
 
+        get().addDefault("minecraft.luz_msgon", Arrays.asList(" ", "&8[&e&lLuz&8] &fVocê ativou a luz", " "));
+        get().addDefault("minecraft.luz_msgoff", Arrays.asList(" ", "&8[&e&lLuz&8] &fVocê desativou a luz", " "));
+        get().addDefault("minecraft.tag_vote", "&8[&e&lVoter&8]");
         get().addDefault("minecraft.comerciante.ativado", true);
         get().addDefault("minecraft.comerciante.feira_atual", "Iniciante");
         get().addDefault("minecraft.discord_embeds.server_status.startup_and_shutdown_broadcast", true);
@@ -80,16 +83,17 @@ public class Config {
         get().addDefault("minecraft.discord_embeds.leave.title", "Até mais %user%");
         get().addDefault("minecraft.discord_embeds.leave.description", "» **%nick%** Saiu do Servidor");
 
+        /*
         get().addDefault("discord_embed.title_java", "**IP do Servidor**");
         get().addDefault("discord_embed.description_java", Arrays.asList("Conecte-se com o seguinte ip", "`jogar.ragnarok-brasil.com.br`"));
         get().addDefault("discord_embed.title_bedrock", "");
         get().addDefault("discord_embed.description_bedrock", Arrays.asList(""));
-
+         */
         get().addDefault("messages.vincularsucesso", Arrays.asList(" ", "&aVocê vinculou com sucesso sua conta com a do &9Discord", " "));
-        get().addDefault("messages.vinculado", "&bSua conta é vinculada com &5$player$");
+        get().addDefault("messages.vinculado", "&bSua conta é vinculada com &5%player%");
         get().addDefault("messages.cooldown", "&cVocê precisa esperar para utilizar o comando novamente");
         get().addDefault("messages.desvincular", "&aSua conta foi desvinculada do net.satooro.stragnarok.discord");
-        get().addDefault("messages.vincular", "&cUse /vincular <código>");
+        get().addDefault("messages.vincular", "&cSeu código é &f%codigo%&c. Use &f/vincular <código> no &9Discord");
         get().addDefault("messages.vincularconta", Arrays.asList("Oi", "Tudo bem?"));
         get().addDefault("messages.commands", Arrays.asList("/vincular conta", "/vincular serializer", "/vincular reload"));
 

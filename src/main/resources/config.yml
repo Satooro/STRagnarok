@@ -30,6 +30,14 @@ discord_embed:
     - ""
 
 minecraft:
+  luz_msgon:
+    - ''
+    - '&8[&e&lLuz&8] &fVocê ativou a luz'
+    - ''
+  luz_msgoff:
+    - ''
+    - '&8[&e&lLuz&8] &fVocê desativou a luz'
+    - ''
   comerciante:
     ativado: true
     feira_atual: 'Iniciante'

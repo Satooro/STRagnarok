@@ -1,6 +1,8 @@
 package net.satooro.stragnarok.database;
 
 
+import net.satooro.stragnarok.discord.events.UserInfo;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -104,6 +106,26 @@ public class Queries {
             System.out.println(e.getMessage());
         }
         return code;
+    }
+
+    public static UserInfo getNickAndUUIDFromCode(String codigo){
+        UserInfo userInfo = null;
+
+        String sql = "SELECT player_nick, player_uuid FROM players_linked WHERE code = ?";
+        try{
+            PreparedStatement ps = database.hikari.getConnection().prepareStatement(sql);
+            ps.setString(1, codigo);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                String player_nick = rs.getString("player_nick");
+                String player_uuid = rs.getString("player_uuid");
+
+                userInfo = new UserInfo(player_nick, player_uuid);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return userInfo;
     }
 
     public static String getUUIDFromCode(String code){

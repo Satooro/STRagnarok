@@ -1,5 +1,8 @@
 package net.satooro.stragnarok.minecraft.commands;
 
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.satooro.stragnarok.database.Queries;
 import net.satooro.stragnarok.discord.events.DCLog;
 import net.satooro.stragnarok.utils.Config;
@@ -28,58 +31,56 @@ public class ComandoVincular implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        if(commandSender instanceof Player p){
+        if (commandSender instanceof Player p) {
 
             String player_uuid = p.getUniqueId().toString();
             String pName = p.getName();
 
-            if(strings.length == 1){
-                if(strings[0].equalsIgnoreCase("conta")) {
-
-                    if(jaVerificado.contains(player_uuid)){
-                      Utils.sendPlayerMessage("Você já está vinculado", p);
-                    } else if (verifyCode.containsValue(player_uuid)){
-                        String code = verifyCode.getKey(player_uuid);
-                        Utils.sendPlayerMessage("HASHMAP: Seu é o seguinte: " + code, p);
-                        return true;
-
-                    } else if(Queries.hasPlayer(player_uuid)){
-                        String code = Queries.getCodeFromUUID(player_uuid);
-                        if(!(code == null)) {
-                            verifyCode.put(code, player_uuid);
-//                        Config.sendMessageStringList("messages.vincularconta", p);
-                            Utils.sendPlayerMessage("SQL: Seu código é: " + code, p);
-                        } else {
-                            jaVerificado.add(player_uuid);
-                            Utils.sendPlayerMessage("Você já está vinculado", p);
-                        }
-                        return true;
-
-                    } else {
-                        String code = Utils.randomCode(10);
-                        verifyCode.put(code, player_uuid);
-                        Utils.sendPlayerMessage("NEW: Seu código é: " + code, p);
-                        Queries.createVerificationUUID(player_uuid, code, pName);
-                        Logs.createLogVerifyMinecraft(pName, code);
-                        DCLog.logDiscordNewCode(pName, code);
-                    }
-                }
-
-                // Reload Config
-                if(strings[0].equalsIgnoreCase("reload")){
-                    if(p.hasPermission("stragnarok.reload") || p.isOp()){
+            if (strings.length >= 1) {
+                if (strings[0].equalsIgnoreCase("reload")) {
+                    if (p.hasPermission("stragnarok.reload") || p.isOp()) {
                         Config.reload();
                         Utils.sendPlayerMessage("Plugin recarregado", p);
                     }
                 }
-                if(strings[0].equalsIgnoreCase("serializer")){
-
+                if(strings[0].equalsIgnoreCase("testar")){
+                    if(p.isOp()) {
+                        Utils.sendPlayerMessage("Recompensas testadas", p);
+                        Utils.getRewards(p);
+                    }
                 }
-            } else {
+            } else if (jaVerificado.contains(player_uuid)) {
+//                Utils.sendPlayerMessage("Você já está vinculado", p);
                 Config.sendMessageStringList("messages.commands", p);
+            } else if (verifyCode.containsValue(player_uuid)) {
+                String code = verifyCode.getKey(player_uuid);
+                Utils.sendPlayerMessage(Config.getString("messages.vincular").replace("%codigo%", code), p);
+                return true;
+
+            } else if (Queries.hasPlayer(player_uuid)) {
+                String code = Queries.getCodeFromUUID(player_uuid);
+                if (!(code == null)) {
+                    verifyCode.put(code, player_uuid);
+                    Utils.sendPlayerMessage(Config.getString("messages.vincular").replace("%codigo%", code), p);
+                } else {
+                    Config.sendMessageStringList("messages.commands", p);
+                    jaVerificado.add(player_uuid);
+                    Utils.sendPlayerMessage(Config.getString("messages.vincular").replace("%codigo%", code), p);
+                }
+
+            } else {
+                String code = Utils.randomCode(10);
+                verifyCode.put(code, player_uuid);
+                Utils.sendPlayerMessage(Config.getString("messages.vincular").replace("%codigo%", code), p);
+                Queries.createVerificationUUID(player_uuid, code, pName);
+                Logs.createLogVerifyMinecraft(pName, code);
+//                        DCLog.logDiscordNewCode(pName, code);
+
             }
 
         }
+        // Reload Config
+
         return false;
     }
 }

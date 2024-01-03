@@ -74,6 +74,20 @@ public class Utils {
                     command.replace("%player%", pName).replace("&", "§")));
     }
 
+    /*
+    public static void removeOlderVoterTag(String playername){
+        if(Config.get().getStringList("minecraft.voter.commands").size() > 0)
+            Config.get().getStringList("minecraft.voter.commands").forEach(command -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
+                    command.replace("%player%", playername).replace("&", "§")));
+    }
+
+    public static void getVoterTag(String playerName{
+        if(Config.get().getStringList("minecraft.voter.newvoter").size() > 0)
+            Config.get().getStringList("minecraft.voter.newvoter").forEach(command -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
+                    command.replace("%player%", playerName).replace("&", "§")));
+    }
+     */
+
     public static void getRewards(Player p){
         if(!Queries.hasRewards(p.getUniqueId().toString())) {
             if(Config.get().getStringList("rewards.commands").size() > 0)

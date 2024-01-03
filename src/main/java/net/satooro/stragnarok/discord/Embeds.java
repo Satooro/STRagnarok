@@ -44,7 +44,7 @@ public class Embeds {
         embed.setThumbnail(guildicon);
 
         embed.addField("Online agora:", "```" + quantiamembros + "```", true);
-        embed.addField("Comerciante atual:", "```" + comerciante + "```", true);
+        embed.addField("Comerciante atual:", "```" + "Comerciante dos " + comerciante + "```", true);
         embed.addField("Lista de players:", "```" + playerlist + "```", false);
 
         return embed;

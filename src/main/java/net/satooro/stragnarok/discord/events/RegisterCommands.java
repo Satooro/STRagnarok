@@ -15,9 +15,8 @@ public class RegisterCommands extends ListenerAdapter {
     public void onGuildReady(GuildReadyEvent event){
         List<CommandData> commandData = new ArrayList<>();
 
-        OptionData option1 = new OptionData(OptionType.STRING, "codigo", "Insira o código para vincular sua conta", true);
         commandData.add(Commands.slash("vincular", "Use o código para vincular a sua conta")
-                .addOptions(option1));
+                .addOptions(new OptionData(OptionType.STRING, "codigo", "Insira o código para vincular sua conta", true)));
         commandData.add(Commands.slash("playerlist", "Mostra os jogadores online"));
 
         commandData.add(Commands.slash("darvip", "Comando para entrega de vips")

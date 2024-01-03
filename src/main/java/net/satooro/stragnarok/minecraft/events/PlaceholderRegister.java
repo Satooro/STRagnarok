@@ -2,6 +2,7 @@ package net.satooro.stragnarok.minecraft.events;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import net.satooro.stragnarok.minecraft.commands.ComandoComerciante;
+import net.satooro.stragnarok.utils.Config;
 import org.bukkit.OfflinePlayer;
 
 public class PlaceholderRegister extends PlaceholderExpansion {
@@ -28,6 +29,9 @@ public class PlaceholderRegister extends PlaceholderExpansion {
         }
         if(params.equals("comerciante_atual")){
             return ComandoComerciante.comerciante;
+        }
+        if(params.equals("tag_vote")){
+            return Config.getString("minecraft.tag_vote");
         }
         return null;
     }

@@ -16,25 +16,21 @@ public class ComandoComerciante implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         if (commandSender instanceof Player p) {
             if (!(strings.length == 0)) {
-                if (strings[0].equalsIgnoreCase("setarcomerciante")) {
-                    if(strings[1].length() == 0) {
+                if (strings[0].equalsIgnoreCase("trocar")) {
+                    if (strings[1].isEmpty()) {
                         Utils.sendPlayerMessage("&6O comerciante atual é: &f" + comerciante, p);
-                    } else switch (strings[1].toLowerCase()) {
-                        case "iniciante" -> {
-                            Utils.sendPlayerMessage("&6Comerciante dos iniciantes definido", p);
-                            comerciante = "iniciante";
-                        }
-                        case "barquinho" -> {
-                            Utils.sendPlayerMessage("&6Comerciante dos barquinhos definido", p);
-                            comerciante = "barquinho";
-                        }
-                        default -> {
-                            Utils.sendPlayerMessage("&6O comerciante atual é: " + comerciante, p);
-                        }
+                    } else if (strings[1].equalsIgnoreCase("iniciante")) {
+                        Utils.sendPlayerMessage("&6Comerciante dos iniciantes definido", p);
+                        comerciante = "Iniciante";
+                    } else if (strings[1].equalsIgnoreCase("barquinho")) {
+                        Utils.sendPlayerMessage("&6Comerciante dos barquinhos definido", p);
+                        comerciante = "Barquinho";
+                    } else {
+                        Utils.sendPlayerMessage("&6O comerciante atual é: " + comerciante, p);
                     }
                 }
             } else {
-                Utils.sendPlayerMessage("&c/admcomerciante setarcomerciante <iniciante|barquinho>", p);
+                Utils.sendPlayerMessage("&c/admcomerciante trocar <iniciante|barquinho>", p);
             }
 
         } else if (strings.length == 0) {
