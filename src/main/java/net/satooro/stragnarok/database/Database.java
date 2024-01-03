@@ -4,16 +4,16 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import net.satooro.stragnarok.utils.Config;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
-public class Database {
+import static net.satooro.stragnarok.STRagnarok.database;
 
+public class Database {
+    /*
     public final HikariDataSource hikari;
 
     public Database() {
@@ -32,7 +32,48 @@ public class Database {
         hikari = new HikariDataSource(config);
 
     }
+     */
 
+    private static Connection conn;
+
+    public Database() {
+        if(Config.getBoolean("mysql.enable")){
+            String host = Config.getString("mysql.host");
+            String database = Config.getString("mysql.database");
+            String username = Config.getString("mysql.username");
+            int port = Config.get().getInt("mysql.port");
+            String password = Config.getString("mysql.password");
+
+            try {
+                if (getConnect() != null && !getConnect().isClosed()) {
+                    return;
+                }
+                Class.forName("java.sql.Driver");
+                setConnect(DriverManager.getConnection("jdbc:mysql://" +
+                        host + ":" + port + "/" + database +
+                        "?autoReconnect=true&useSSL=false", username, password));
+                System.out.println("O Mysql ligou na porta " + port);
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+    }
+
+    public static Connection getConnect() {
+        return conn;
+    }
+
+    public static void setConnect(Connection connect) {
+        conn = connect;
+    }
+
+    public static void closeConnect(Connection connect) throws SQLException {
+        connect.close();
+    }
+
+    /*
     public <T> List<T> queryMany(String operation, Consumer<PreparedStatement> prepare, Adapter<T> adapter) {
 
         List<T> list = new ArrayList<>();
@@ -95,4 +136,6 @@ public class Database {
             throw new RuntimeException(e);
         }
     }
+
+     */
 }
