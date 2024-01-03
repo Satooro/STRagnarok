@@ -81,6 +81,26 @@ public class Queries {
         return hasCode;
     }
 
+    public static UserInfo getNickAndUUIDFromCode(String codigo){
+        UserInfo userInfo = null;
+
+        String sql = "SELECT player_nick, player_uuid FROM players_linked WHERE code = ?";
+        try{
+            PreparedStatement ps = getConnect().prepareStatement(sql);
+            ps.setString(1, codigo);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                String player_nick = rs.getString("player_nick");
+                String player_uuid = rs.getString("player_uuid");
+
+                userInfo = new UserInfo(player_nick, player_uuid);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return userInfo;
+    }
+
     public static String getCodeFromUserID(String userID) {
         String code = null;
         String sql = "SELECT code FROM players_linked WHERE userid = ?";
