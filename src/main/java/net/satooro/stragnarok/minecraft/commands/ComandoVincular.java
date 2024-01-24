@@ -65,7 +65,7 @@ public class ComandoVincular implements CommandExecutor {
                 } else {
                     Config.sendMessageStringList("messages.commands", p);
                     jaVerificado.add(player_uuid);
-                    Utils.sendPlayerMessage(Config.getString("messages.vincular").replace("%codigo%", code), p);
+//                    Utils.sendPlayerMessage(Config.getString("messages.vincular").replace("%codigo%", code), p);
                 }
 
             } else {

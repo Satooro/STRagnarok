@@ -37,7 +37,7 @@ public class Database {
     private static Connection conn;
 
     public Database() {
-        if(Config.getBoolean("mysql.enable")){
+        if(Config.getBoolean("mysql.enabled")){
             String host = Config.getString("mysql.host");
             String database = Config.getString("mysql.database");
             String username = Config.getString("mysql.username");
