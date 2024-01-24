@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class ComandoComerciante implements CommandExecutor {
-    public static String comerciante = "iniciante";
+    public static String comerciante = "Iniciante";
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
@@ -19,10 +19,10 @@ public class ComandoComerciante implements CommandExecutor {
                 if (strings[0].equalsIgnoreCase("trocar")) {
                     if (strings[1].isEmpty()) {
                         Utils.sendPlayerMessage("&6O comerciante atual é: &f" + comerciante, p);
-                    } else if (strings[1].equalsIgnoreCase("iniciante")) {
+                    } else if (strings[1].equalsIgnoreCase("Iniciante")) {
                         Utils.sendPlayerMessage("&6Comerciante dos iniciantes definido", p);
                         comerciante = "Iniciante";
-                    } else if (strings[1].equalsIgnoreCase("barquinho")) {
+                    } else if (strings[1].equalsIgnoreCase("Barquinho")) {
                         Utils.sendPlayerMessage("&6Comerciante dos barquinhos definido", p);
                         comerciante = "Barquinho";
                     } else {

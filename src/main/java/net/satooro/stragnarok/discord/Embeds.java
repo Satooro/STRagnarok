@@ -25,6 +25,16 @@ public class Embeds {
         return embed;
     }
 
+    public static EmbedBuilder joinAndLeaveNotVinculated(String nick, Boolean join){
+        EmbedBuilder embed = new EmbedBuilder();
+
+        embed.setThumbnail("https://minotar.net/cube/%PLAYER%/100.png".replace("%PLAYER%", nick));
+        embed.setDescription(join ? Config.getString("minecraft.discord_embeds.join.description").replace("%nick%", nick) : Config.getString("minecraft.discord_embeds.leave.description").replace("%nick%", nick));
+        embed.setColor(join ? new Color(3,255,19) : new Color(255, 0 , 0));
+
+        return embed;
+    }
+
     public static EmbedBuilder joinAndLeaveMessage(String dcname, String nick, String avatarurl, Boolean join){
         EmbedBuilder embed = new EmbedBuilder();
 

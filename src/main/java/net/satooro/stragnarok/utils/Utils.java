@@ -5,13 +5,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.time.format.TextStyle;
+import java.util.*;
 
 public class Utils {
 
@@ -57,6 +56,12 @@ public class Utils {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
         return dateTime.format(dateTimeFormatter);
+    }
+
+    public static String getDay(){
+        LocalDate date = LocalDate.now();
+        String nomeDia = date.getDayOfWeek().getDisplayName(TextStyle.FULL, new Locale("pt", "BR"));
+        return getDay();
     }
 
     public static String getDataTime(String pattern){

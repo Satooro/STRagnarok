@@ -28,10 +28,6 @@ public class JoinListener extends ListenerAdapter implements Listener {
         if(verificadosOnline.containsValue(pUUID)) {
 
             String userid = verificadosOnline.getKey(pUUID);
-             /*
-            Utils.sendMessageConsole("MapName: " + pName);
-            Utils.sendMessageConsole("MapUserID: " + userid);
-             */
             User user = BotManager.getJda().retrieveUserById(userid).complete();
             String avatarurl = user.getAvatarUrl();
             String dcusername = user.getName();
@@ -43,10 +39,6 @@ public class JoinListener extends ListenerAdapter implements Listener {
         } else if(Queries.playerIsVerified(pUUID)){
             String userid = Queries.getUserIdFromUUID(pUUID);
             verificadosOnline.put(userid, pUUID);
-            /*
-            Utils.sendMessageConsole("SQLName: " + pName);
-            Utils.sendMessageConsole("SQLUserID: " + userid);
-             */
             User user = BotManager.getJda().retrieveUserById(userid).complete();
             String avatarurl = user.getAvatarUrl();
             String dcusername = user.getName();
@@ -56,7 +48,8 @@ public class JoinListener extends ListenerAdapter implements Listener {
                 canal.sendMessageEmbeds(Embeds.joinAndLeaveMessage(dcusername, pName, avatarurl, true).build()).queue();
             }
         } else {
-            Utils.sendMessageConsole("Player " + pName + " não registrado");
+            TextChannel canal = GuildManager.getGuild().getTextChannelById(Config.getString("minecraft.discord_embeds.entradas_e_saidas_canal"));
+            canal.sendMessageEmbeds(Embeds.joinAndLeaveNotVinculated(pName, true).build()).queue();
         }
     }
 
@@ -76,7 +69,8 @@ public class JoinListener extends ListenerAdapter implements Listener {
                 canal.sendMessageEmbeds(Embeds.joinAndLeaveMessage(dcusername, pName, avatarurl, false).build()).queue();
             }
         } else {
-            Utils.sendMessageConsole("Player " + pName + " não registrado");
+            TextChannel canal = GuildManager.getGuild().getTextChannelById(Config.getString("minecraft.discord_embeds.entradas_e_saidas_canal"));
+            canal.sendMessageEmbeds(Embeds.joinAndLeaveNotVinculated(pName, false).build()).queue();
         }
     }
 }
