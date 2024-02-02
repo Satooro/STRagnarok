@@ -6,6 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.potion.PotionEffect;
@@ -25,10 +26,11 @@ public class ComandoLuz implements CommandExecutor, Listener {
             if(strings.length == 0){
                 if(luz.contains(p)){
                     luz.remove(p);
-                    Utils.sendPlayerMessage(Config.get().getStringList("minecraft.luz_msgoff").toString(), p);
+                    Config.sendMessageStringList("minecraft.luz_msgoff", p);
                     p.removePotionEffect(PotionEffectType.NIGHT_VISION);
                 } else {
                     luz.add(p);
+                    Config.sendMessageStringList("minecraft.luz_msgon", p);
                     Utils.sendPlayerMessage(Config.get().getStringList("minecraft.luz_msgon").toString(), p);
                     p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 999999999, 1, true, false));
                 }
@@ -37,6 +39,7 @@ public class ComandoLuz implements CommandExecutor, Listener {
         return false;
     }
 
+    @EventHandler
     public static void onPlayerLeave(PlayerQuitEvent e){
         Player player = e.getPlayer();
         if(luz.contains(player)) luz.remove(player);

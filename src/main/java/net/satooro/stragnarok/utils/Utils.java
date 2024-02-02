@@ -60,8 +60,7 @@ public class Utils {
 
     public static String getDay(){
         LocalDate date = LocalDate.now();
-        String nomeDia = date.getDayOfWeek().getDisplayName(TextStyle.FULL, new Locale("pt", "BR"));
-        return getDay();
+        return date.getDayOfWeek().getDisplayName(TextStyle.FULL, new Locale("pt", "BR"));
     }
 
     public static String getDataTime(String pattern){

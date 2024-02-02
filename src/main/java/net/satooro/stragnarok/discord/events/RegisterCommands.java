@@ -2,6 +2,7 @@ package net.satooro.stragnarok.discord.events;
 
 import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
@@ -22,11 +23,12 @@ public class RegisterCommands extends ListenerAdapter {
         commandData.add(Commands.slash("darvip", "Comando para entrega de vips")
                 .addOptions(new OptionData(OptionType.USER, "usuario", "Usuário que irá receber", true))
                 .addOptions(new OptionData(OptionType.STRING, "vip", "Tipo de vip", true)
-                        .addChoice("Loki", "loki")
-                        .addChoice("Thor", "thor")
-                        .addChoice("Odin", "odin")
-                        .addChoice("Valhalla", "valhallha")
-                        .addChoice("Ragnarok", "ragnarok"))
+                        .addChoice("Loki", "Loki")
+                        .addChoice("Thor", "Thor")
+                        .addChoice("Odin", "Odin")
+                        .addChoice("Valhalla", "Fenrir")
+                        .addChoice("Ragnarok", "Ragnarok"))
+                        .setDefaultPermissions(DefaultMemberPermissions.DISABLED)
                 .addOptions(new OptionData(OptionType.INTEGER, "dias", "Dias de vip", true)));
 
 

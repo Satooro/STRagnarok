@@ -28,9 +28,11 @@ public class Embeds {
     public static EmbedBuilder joinAndLeaveNotVinculated(String nick, Boolean join){
         EmbedBuilder embed = new EmbedBuilder();
 
+        embed.setTitle(join ? "» O jogador %nick% conectou".replace("%nick%", nick) : "» O jogador %nick% saiu".replace("%nick%", nick));
         embed.setThumbnail("https://minotar.net/cube/%PLAYER%/100.png".replace("%PLAYER%", nick));
         embed.setDescription(join ? Config.getString("minecraft.discord_embeds.join.description").replace("%nick%", nick) : Config.getString("minecraft.discord_embeds.leave.description").replace("%nick%", nick));
         embed.setColor(join ? new Color(3,255,19) : new Color(255, 0 , 0));
+        embed.setTimestamp(OffsetDateTime.now());
 
         return embed;
     }
@@ -71,6 +73,7 @@ public class Embeds {
         embed.addField("Nick:", "```" + player + "```", false);
         embed.addField("VIP:", "```" + tipovip + "```", true);
         embed.addField("Duração:", "```" + tempo + "```", true);
+        embed.addField("Como ativar:","**»** Verifique dentro do servidor o comando **/chaves**, depois basta usar /ativarvip <chave>!", false);
 
         return embed;
     }

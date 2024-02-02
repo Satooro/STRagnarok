@@ -31,6 +31,7 @@ public class Queries {
                                 `rewards` BOOLEAN NOT NULL DEFAULT FALSE,
                                 `server` VARCHAR(32) NULL DEFAULT NULL,
                                 `dscoins` VARCHAR(50) NULL DEFAULT 0,
+                                `ticket_status` BOOLEAN NOT NULL DEFAULT FALSE,
                                 PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;""";
 
         try (Statement stmt = getConnect().createStatement()) {

@@ -1,13 +1,12 @@
 package net.satooro.stragnarok.minecraft.commands;
 
-import net.kyori.adventure.audience.Audience;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.luckperms.api.cacheddata.CachedData;
+import net.luckperms.api.model.user.User;
+import net.luckperms.api.node.Node;
+import net.luckperms.api.node.NodeType;
+import net.satooro.stragnarok.STRagnarok;
 import net.satooro.stragnarok.database.Queries;
-import net.satooro.stragnarok.discord.events.DCLog;
-import net.satooro.stragnarok.utils.Config;
-import net.satooro.stragnarok.utils.Logs;
-import net.satooro.stragnarok.utils.Utils;
+import net.satooro.stragnarok.utils.*;
 import org.apache.commons.collections4.BidiMap;
 import org.apache.commons.collections4.bidimap.DualHashBidiMap;
 import org.apache.commons.collections4.map.HashedMap;
@@ -19,8 +18,16 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.UUID;
 
 public class ComandoVincular implements CommandExecutor {
+
+    private STRagnarok main;
+
+    private ComandoVincular(STRagnarok main){
+        this.main = main;
+    }
+
 
     // Cooldown
     Map<String, Long> cooldown = new HashedMap<>();
@@ -37,6 +44,12 @@ public class ComandoVincular implements CommandExecutor {
             String pName = p.getName();
 
             if (strings.length >= 1) {
+
+                if(strings[0].equalsIgnoreCase("grupo")){
+                    String grupo = getPlayerGroups(UUID.fromString(player_uuid));
+                    p.sendMessage(grupo);
+                }
+
                 if (strings[0].equalsIgnoreCase("reload")) {
                     if (p.hasPermission("stragnarok.reload") || p.isOp()) {
                         Config.reload();
@@ -49,6 +62,19 @@ public class ComandoVincular implements CommandExecutor {
                         Utils.getRewards(p);
                     }
                 }
+                if(strings[0].equalsIgnoreCase("refrescar")){
+                    if(Utils.playerHasCooldown(player_uuid, cooldown)){
+                        p.sendMessage(Messages.COOLDOWN);
+                        return true;
+                    } else {
+
+                        cooldown.put(player_uuid, System.currentTimeMillis() + (300 * TimeUnit.SECOND));
+                    }
+                }
+                if(Utils.playerHasCooldown(String.valueOf(p.getUniqueId()), cooldown)){
+                    p.sendMessage(Messages.COOLDOWN);
+                    return true;
+                }
             } else if (jaVerificado.contains(player_uuid)) {
 //                Utils.sendPlayerMessage("Você já está vinculado", p);
                 Config.sendMessageStringList("messages.commands", p);
@@ -58,10 +84,15 @@ public class ComandoVincular implements CommandExecutor {
                 return true;
 
             } else if (Queries.hasPlayer(player_uuid)) {
+                if(Utils.playerHasCooldown(player_uuid, cooldown)){
+                    p.sendMessage(Messages.COOLDOWN);
+                    return true;
+                }
                 String code = Queries.getCodeFromUUID(player_uuid);
                 if (!(code == null)) {
                     verifyCode.put(code, player_uuid);
                     Utils.sendPlayerMessage(Config.getString("messages.vincular").replace("%codigo%", code), p);
+                    cooldown.put(player_uuid, System.currentTimeMillis() + (10 * TimeUnit.SECOND));
                 } else {
                     Config.sendMessageStringList("messages.commands", p);
                     jaVerificado.add(player_uuid);
@@ -74,6 +105,7 @@ public class ComandoVincular implements CommandExecutor {
                 Utils.sendPlayerMessage(Config.getString("messages.vincular").replace("%codigo%", code), p);
                 Queries.createVerificationUUID(player_uuid, code, pName);
                 Logs.createLogVerifyMinecraft(pName, code);
+                cooldown.put(player_uuid, System.currentTimeMillis() + (10 * TimeUnit.SECOND));
 //                        DCLog.logDiscordNewCode(pName, code);
 
             }
@@ -83,4 +115,30 @@ public class ComandoVincular implements CommandExecutor {
 
         return false;
     }
+
+    public static String getPlayerGroups(UUID uuid){
+        User user = STRagnarok.getLuckPerms().getUserManager().loadUser(uuid).join();
+        if(user != null){
+
+            CachedData cachedData = (CachedData) user.getCachedData();
+
+            int maiorPeso = Integer.MIN_VALUE;
+            String maiorGrupo = "";
+
+            for(Node node : user.getNodes()){
+                if(node.getType() == NodeType.INHERITANCE){
+                    String groupName = node.getKey();
+                    int weight = STRagnarok.getLuckPerms().getGroupManager().getGroup(groupName).getWeight().orElse(0);
+                    if(weight > maiorPeso){
+                        maiorPeso = weight;
+                        maiorGrupo = groupName;
+
+                    }
+                }
+            }
+            return maiorGrupo;
+        }
+        return "";
+    }
+
 }

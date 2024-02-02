@@ -4,15 +4,13 @@ import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
-import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.satooro.stragnarok.database.Queries;
-import net.satooro.stragnarok.discord.BotManager;
 import net.satooro.stragnarok.discord.Embeds;
-import net.satooro.stragnarok.utils.Utils;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
 import java.util.Objects;
+
+import static org.bukkit.Bukkit.getServer;
 
 public class DCDarVip extends ListenerAdapter {
 
@@ -50,12 +48,25 @@ public class DCDarVip extends ListenerAdapter {
                 String status = splitInfo[1];
                 if (Objects.equals(status, "1")) {
                     event.deferReply(false).setEmbeds(Embeds.entregaVipEmbed(author, player_nick, tipovip, userslash1, useravatar, tempo.getAsString()).build()).queue();
+                    getServer().dispatchCommand(getServer().getConsoleSender(), "givekey %nick% %vip% %duracao%d"
+                            .replace("%nick%", player_nick).replace("%vip%", tipovip).replace("%duracao%", tempo.getAsString()));
                 } else {
                     event.deferReply(true).setEmbeds(Embeds.playerNaoVinculadoEmbed(author).build()).queue();
                 }
             }
         }
     }
+
+    /*
+    public static VipHolder pegarVIP(){
+        try{
+            RegisteredServiceProvider<VipHolder> rsp = Bukkit.getServer().getServicesManager().getRegistration(VipHolder.class);
+            return rsp == null ? null : (VipHolder) rsp.getProvider();
+        } catch (Throwable var1){
+            return null;
+        }
+    }
+     */
 
     private static String[] splitString(String combinedString){
         if(combinedString != null){
