@@ -21,6 +21,15 @@ public class Utils {
     public static void sendPlayerMessage(String message, Player p){
         p.sendMessage(message.replace("&", "§"));
     }
+    public static void sendTitleMessage(String comerciante){
+        for(Player player : Bukkit.getOnlinePlayers()){
+            player.sendTitle(
+                    Config.getString("minecraft.comerciante.title").replace("&", "§"),
+                    Config.getString("minecraft.comerciante.subtitle").replace("%comerciante%", comerciante).replace("&", "§"),
+                    20, 100, 20
+            );
+        }
+    }
 
     public static String randomCode(int length) {
         String alfabetoUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

@@ -19,12 +19,42 @@ public class ComandoComerciante implements CommandExecutor {
                 if (strings[0].equalsIgnoreCase("trocar")) {
                     if (strings[1].isEmpty()) {
                         Utils.sendPlayerMessage("&6O comerciante atual é: &f" + comerciante, p);
-                    } else if (strings[1].equalsIgnoreCase("Iniciante")) {
+                    } else if (strings[1].equalsIgnoreCase("Vanilla")) {
                         Utils.sendPlayerMessage("&6Comerciante dos iniciantes definido", p);
-                        comerciante = "Iniciante";
-                    } else if (strings[1].equalsIgnoreCase("Barquinho")) {
+                        Utils.sendTitleMessage(comerciante);
+                        comerciante = "Vanilla";
+                    } else if (strings[1].equalsIgnoreCase("Jacquin")) {
                         Utils.sendPlayerMessage("&6Comerciante dos barquinhos definido", p);
-                        comerciante = "Barquinho";
+                        Utils.sendTitleMessage(comerciante);
+                        comerciante = "Jacquin";
+                    } else if(strings[1].equalsIgnoreCase("Industrial")){
+                        Utils.sendPlayerMessage("&6Comerciante Industrial definido", p);
+                        Utils.sendTitleMessage(comerciante);
+                        comerciante = "Industrial";
+                    } else if(strings[1].equalsIgnoreCase("Pipa")){
+                        Utils.sendPlayerMessage("&6Comerciante Pipa definido", p);
+                        Utils.sendTitleMessage(comerciante);
+                        comerciante = "Pipa";
+                    } else if(strings[1].equalsIgnoreCase("Mágico")){
+                        Utils.sendPlayerMessage("&6Comerciante Mágico definido", p);
+                        Utils.sendTitleMessage(comerciante);
+                        comerciante = "Mágico";
+                    } else if(strings[1].equalsIgnoreCase("Fazendeiro")){
+                        Utils.sendPlayerMessage("&6Comerciante Fazendeiro definido", p);
+                        Utils.sendTitleMessage(comerciante);
+                        comerciante = "Fazendeiro";
+                    } else if(strings[1].equalsIgnoreCase("Traficante")){
+                        Utils.sendPlayerMessage("&6Comerciante Traficante definido", p);
+                        Utils.sendTitleMessage(comerciante);
+                        comerciante = "Traficante";
+                    } else if(strings[1].equalsIgnoreCase("EndGame")){
+                        Utils.sendPlayerMessage("&6Comerciante EndGame definido", p);
+                        Utils.sendTitleMessage(comerciante);
+                        comerciante = "EndGame";
+                    } else if(strings[1].equalsIgnoreCase("Bruxa")){
+                        Utils.sendPlayerMessage("&6Comerciante Bruxa definido", p);
+                        Utils.sendTitleMessage(comerciante);
+                        comerciante = "Bruxa";
                     } else {
                         Utils.sendPlayerMessage("&6O comerciante atual é: " + comerciante, p);
                     }

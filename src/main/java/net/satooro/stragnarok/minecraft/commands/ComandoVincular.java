@@ -24,7 +24,7 @@ public class ComandoVincular implements CommandExecutor {
 
     private STRagnarok main;
 
-    private ComandoVincular(STRagnarok main){
+    public ComandoVincular(STRagnarok main){
         this.main = main;
     }
 
