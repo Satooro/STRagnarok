@@ -3,6 +3,7 @@ package net.satooro.stragnarok.minecraft.commands;
 import jdk.jshell.execution.Util;
 import net.satooro.stragnarok.utils.Config;
 import net.satooro.stragnarok.utils.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -63,9 +64,39 @@ public class ComandoComerciante implements CommandExecutor {
                 Utils.sendPlayerMessage("&c/admcomerciante trocar <iniciante|barquinho>", p);
             }
 
-        } else if (strings.length == 0) {
-            Utils.sendMessageConsole("Olá");
+        } else if (!(strings.length == 0)) {
+            if(strings[1].isEmpty()){
+                Bukkit.getConsoleSender().sendMessage("§c/admcomerciante trocar <vanilla/jacquin/industrial/pipa/mágico/fazendeiro/traficante/endgame/bruxa>");
+            } else {
+                if(strings[1].equalsIgnoreCase("vanilla")){
+                    setComercianteConsole(strings[1]);
+                } else if (strings[1].equalsIgnoreCase("jacquin")){
+                    setComercianteConsole(strings[1]);
+                } else if (strings[1].equalsIgnoreCase("industrial")){
+                    setComercianteConsole(strings[1]);
+                } else if (strings[1].equalsIgnoreCase("pipa")){
+                    setComercianteConsole(strings[1]);
+                } else if (strings[1].equalsIgnoreCase("mágico")){
+                    setComercianteConsole(strings[1]);
+                } else if (strings[1].equalsIgnoreCase("fazendeiro")){
+                    setComercianteConsole(strings[1]);
+                } else if (strings[1].equalsIgnoreCase("traficante")){
+                    setComercianteConsole(strings[1]);
+                } else if (strings[1].equalsIgnoreCase("endgame")){
+                    setComercianteConsole(strings[1]);
+                } else if (strings[1].equalsIgnoreCase("bruxa")){
+                    setComercianteConsole(strings[1]);
+                } else {
+                    Bukkit.getConsoleSender().sendMessage("§6O comerciante atual é: " + comerciante);
+                }
+            }
         }
         return false;
     }
+
+    public static void setComercianteConsole(String input){
+        comerciante = input;
+        Bukkit.getConsoleSender().sendMessage("Comerciante definido para: " + comerciante);
+    }
+
 }
