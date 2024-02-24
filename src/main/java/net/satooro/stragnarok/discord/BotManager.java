@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.satooro.stragnarok.discord.commands.DCDarVip;
 import net.satooro.stragnarok.discord.commands.DCPlayerList;
 import net.satooro.stragnarok.discord.commands.DCVincular;
+import net.satooro.stragnarok.discord.commands.DCVipInfo;
 import net.satooro.stragnarok.discord.events.RegisterCommands;
 import net.satooro.stragnarok.minecraft.events.JoinListener;
 import net.satooro.stragnarok.utils.Config;
@@ -24,6 +25,7 @@ public class BotManager {
                 new RegisterCommands(),
                 new DCPlayerList(),
                 new JoinListener(),
+//                new DCVipInfo(),
                 new DCDarVip());
 
         String tipo = Config.getString("bot.status_type");

@@ -30,6 +30,7 @@ public class RegisterCommands extends ListenerAdapter {
                         .addChoice("Ragnarok", "Ragnarok"))
                         .setDefaultPermissions(DefaultMemberPermissions.DISABLED)
                 .addOptions(new OptionData(OptionType.INTEGER, "dias", "Dias de vip", true)));
+//        commandData.add(Commands.slash("vipinfo", "Cria a mensagem de informações de vips").setDefaultPermissions(DefaultMemberPermissions.DISABLED));
 
 
         event.getGuild().updateCommands().addCommands(commandData).queue();

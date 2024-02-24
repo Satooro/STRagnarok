@@ -2,6 +2,7 @@ package net.satooro.stragnarok.discord;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.interactions.components.selections.StringSelectMenu;
 import net.satooro.stragnarok.STRagnarok;
 import net.satooro.stragnarok.utils.Config;
 import net.satooro.stragnarok.utils.Utils;
@@ -25,6 +26,14 @@ public class Embeds {
         return embed;
     }
 
+
+    public static EmbedBuilder vipInfoMessage(){
+        EmbedBuilder embed = new EmbedBuilder();
+
+        embed.setTitle("RagnarokCraft - Site", "https://ragnarokcraft.net");
+        embed.addField("> **RagnarokCraft - VIPS**", "Selecione o vip para ver todas as vantagens que ele possui!", false);
+        return embed;
+    }
     public static EmbedBuilder joinAndLeaveNotVinculated(String nick, Boolean join){
         EmbedBuilder embed = new EmbedBuilder();
 
