@@ -20,7 +20,7 @@ public class ComercianteTab implements TabCompleter {
         List<String> resultados = new ArrayList<>();
 
         if(strings[0].length() == 1){
-            return StringUtil.copyPartialMatches(strings[0], Arrays.asList("trocar"), new ArrayList<>());
+            return StringUtil.copyPartialMatches(strings[0], List.of("trocar"), new ArrayList<>());
         } else if(strings[1].length() == 2){
             return StringUtil.copyPartialMatches(strings[1], Arrays.asList("vanilla", "jacquin", "industrial", "pipa", "mágico", "fazendeiro", "traficante", "endgame", "bruxa"), new ArrayList<>());
         }
