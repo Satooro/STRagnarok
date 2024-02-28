@@ -41,5 +41,6 @@ public class BotManager {
         jda = builder.build();
     }
 
+
     public static JDA getJda() {return jda;}
 }
