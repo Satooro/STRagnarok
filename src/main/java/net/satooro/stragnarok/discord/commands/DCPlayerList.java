@@ -32,7 +32,7 @@ public class DCPlayerList extends ListenerAdapter {
             for(Player p : Bukkit.getOnlinePlayers()){
                 list.add(p.getName());
             }
-            if(list.size() > 0){
+            if(!list.isEmpty()){
                 int quantiamembros = Bukkit.getOnlinePlayers().size();
                 event.deferReply(false).setEmbeds(Embeds.onlinePlayersEmbed(getOnlinePlayersList(), quantiamembros, guildicon, ComandoComerciante.comerciante).build()).queue();
 //                event.reply("Jogadores: " + getOnlinePlayersList()).queue();
