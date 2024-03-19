@@ -10,3 +10,5 @@ commands:
   luz:
     aliases: lanterna
   morrepraga:
+  restoreplayerinventory:
+    aliases: rpi

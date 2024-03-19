@@ -95,6 +95,7 @@ public class Embeds {
         return embed;
     }
 
+    /*
     public static EmbedBuilder serverRunAndOff(Boolean status, String guildicon){
         EmbedBuilder embed = new EmbedBuilder();
 
@@ -105,5 +106,6 @@ public class Embeds {
 
         return embed;
     }
+     */
 
 }

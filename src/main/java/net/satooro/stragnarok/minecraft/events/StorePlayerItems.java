@@ -22,7 +22,6 @@ public class StorePlayerItems implements Listener {
             TextChannel channel = BotManager.getJda().getTextChannelById("1183671742699413524");
             channel.sendMessage(pinv).queue();
 
-            Bukkit.getConsoleSender().sendMessage(pinv);
         }
     }
 
